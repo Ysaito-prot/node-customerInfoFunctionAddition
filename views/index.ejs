@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>User list</title>
+    </head>
+    <body>
+        <label>検索：<input type="text" id="searchInput" placeholder="nameで検索"></label>
+        <input type="button" value="実行" id="searchButton">
+        <table border="1" id="myTable">
+            <tr>
+                <th>name</th>
+                <th>kana_name</th>
+                <th>gender</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>workplace</th>
+                <th>household</th>                
+                <th>更新・削除</th>
+            </tr>
+            <% users.forEach(function (element) { %>
+                <tr>
+                    <td>
+                        <%= element.name %>
+                    </td>
+                    <td>
+                        <%= element.kana_name %>
+                    </td>
+                    <td>
+                        <%= element.gender %>
+                    </td>
+                    <td>
+                        <%= element.email %>
+                    </td>
+                    <td>
+                        <%= element.phone %>
+                    </td>
+                    <td>
+                        <%= element.address %>
+                    </td>
+                    <td>
+                        <%= element.workplace %>
+                    </td>
+                    <td>
+                        <%= element.household %>
+                    </td>
+                    <td>
+                        <!-- // 更新ボタン -->
+                        <button type="button">
+                            <!-- <a href="/edit/" DBのIDをして下さい">更新</a> -->
+                            <a href="/edit/<%= element.id %>">更新</a>
+                        </button>
+                        <!-- // 削除ボタン -->
+                        <button type="button">
+                            <a href="/delete/<%= element.id %>">削除</a>
+                        </button>
+                    </td>
+                </tr>
+                <% }); %>
+        </table>
+        <p><a href="/create">ユーザーの追加</a></p>
+        <label>ID：<input type="text" id="nameText"></label>
+        <input type="button" value="Check" id="checkButton">
+        <p id="msg"></p>
+        <script type="text/javascript">
+            let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
+            console.log(users);
+
+            function buttonClick() {
+                let found = users.find(e => e.id === Number(nameText.value));
+                // console.log(found);
+                msg.innerText = `名前:${found.name}、email:${found.email}`;
+            }
+
+            // pタグ情報の取得
+            let msg = document.getElementById('msg');
+            // テキストボックスの情報取得
+            let nameText = document.getElementById('nameText');
+            // ボタンタグの情報取得
+            let checkButton = document.getElementById('checkButton');
+            // ボタンがクリックされた時に関数buttonClickが動く
+            checkButton.addEventListener('click', buttonClick);
+
+            // 情報の絞り込み機能
+            document.getElementById('searchButton').addEventListener('click', function () {
+                let keyword = document.getElementById('searchInput').value;
+                let tableRows = document.getElementById('myTable').getElementsByTagName('tr');
+
+                for (let i = 1; i < tableRows.length; i++) {
+                    let rowText = tableRows[i].textContent.toLowerCase();
+                    if (rowText.indexOf(keyword) > -1) {
+                        tableRows[i].style.display = '';
+                    } else {
+                        tableRows[i].style.display = 'none';
+                    }
+                }
+                console.log(tableRows);
+            });
+        </script>
+    </body>
+</html>
