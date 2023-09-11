@@ -9,14 +9,14 @@
         <input type="button" value="実行" id="searchButton">
         <table border="1" id="myTable">
             <tr>
-                <th>name</th>
-                <th>kana_name</th>
-                <th>gender</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>address</th>
-                <th>workplace</th>
-                <th>household</th>                
+                <th id="name_display">name<input type="radio" onclick="radio_cell(this,'name_display','name_display2')"></th>
+                <th id="kana_name_display">kana_name<input type="radio" onclick="radio_cell(this,'kana_name_display','kana_name_display2')"></th>
+                <th id="gender_display">gender<input type="radio" onclick="radio_cell(this,'gender_display','gender_display2')"></th>
+                <th id="email_display">email<input type="radio" onclick="radio_cell(this,'email_display','email_display2')"></th>
+                <th id="phone_display">phone<input type="radio" onclick="radio_cell(this,'phone_display','phone_display2')"></th>
+                <th id="address_display">address<input type="radio" onclick="radio_cell(this,'address_display','address_display2')"></th>
+                <th id="workplace_display">workplace<input type="radio" onclick="radio_cell(this,'workplace_display','workplace_display2')"></th>
+                <th id="household_display">household<input type="radio" onclick="radio_cell(this,'household_display','household_display2')"></th>
                 <th>更新・削除</th>
             </tr>
             <% users.forEach(function (element) { %>
@@ -63,6 +63,47 @@
         <label>ID：<input type="text" id="nameText"></label>
         <input type="button" value="Check" id="checkButton">
         <p id="msg"></p>
+        <div>選択した項目一覧</div>
+        <table border="1" id="myTable2">
+            <tr>
+                <th id="name_display2">name</th>
+                <th id="kana_name_display2">kana_name</th>
+                <th id="gender_display2">gender</th>
+                <th id="email_display2">email</th>
+                <th id="phone_display2">phone</th>
+                <th id="address_display2">address</th>
+                <th id="workplace_display2">workplace</th>
+                <th id="household_display2">household</th>
+            </tr>
+            <% users.forEach(function (element) { %>
+                <tr>
+                    <td>
+                        <%= element.name %>
+                    </td>
+                    <td>
+                        <%= element.kana_name %>
+                    </td>
+                    <td>
+                        <%= element.gender %>
+                    </td>
+                    <td>
+                        <%= element.email %>
+                    </td>
+                    <td>
+                        <%= element.phone %>
+                    </td>
+                    <td>
+                        <%= element.address %>
+                    </td>
+                    <td>
+                        <%= element.workplace %>
+                    </td>
+                    <td>
+                        <%= element.household %>
+                    </td>
+                </tr>
+                <% }); %>
+        </table>
         <script type="text/javascript">
             let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
             console.log(users);
@@ -86,17 +127,47 @@
             document.getElementById('searchButton').addEventListener('click', function () {
                 let keyword = document.getElementById('searchInput').value;
                 let tableRows = document.getElementById('myTable').getElementsByTagName('tr');
+                let tableRows2 = document.getElementById('myTable2').getElementsByTagName('tr');
 
                 for (let i = 1; i < tableRows.length; i++) {
                     let rowText = tableRows[i].textContent.toLowerCase();
+                    let rowText2 = tableRows2[i].textContent.toLowerCase();
                     if (rowText.indexOf(keyword) > -1) {
                         tableRows[i].style.display = '';
                     } else {
                         tableRows[i].style.display = 'none';
                     }
+                    if (rowText2.indexOf(keyword) > -1) {
+                        tableRows2[i].style.display = '';
+                    } else {
+                        tableRows2[i].style.display = 'none';
+                    }
                 }
-                console.log(tableRows);
             });
+
+            // 情報を格納する機能
+            function radio_cell(obj, id, id2) {
+                var CELL = document.getElementById(id);
+                var CELL2 = document.getElementById(id2);
+                var TABLE = CELL.parentNode.parentNode.parentNode;
+                var TABLE2 = CELL2.parentNode.parentNode.parentNode;
+                for (var i = 0; TABLE.rows[i]; i++) {
+                    TABLE.rows[i].cells[CELL.cellIndex].style.display = (obj.checked) ? 'none' : '';
+                    TABLE2.rows[i].cells[CELL2.cellIndex].style.display = (obj.checked) ? '' : 'none';
+                }
+            }
+            // 画面が読み込まれたときは選択された項目専用の表は「非表示」にしておく
+            window.onload = function () {
+                var array = ["name","kana_name","gender","email","phone","address","workplace","household"];
+                for (var j = 0; j < array.length; j++) {
+                    var id = array[j] + "_display2";
+                    var CELL = document.getElementById(id);
+                    var TABLE = CELL.parentNode.parentNode.parentNode;
+                    for (var i = 0; TABLE.rows[i]; i++) {
+                        TABLE.rows[i].cells[CELL.cellIndex].style.display = 'none';
+                    }
+                }
+            }
         </script>
     </body>
 </html>
