@@ -9,7 +9,13 @@
     <h1>更新フォーム</h1>
     <form action="/update/<%= user[0].id %>" method="POST">
         name <input type="text" name="name" value="<%= user[0].name %>"><br>
+        kana_name <input type="text" name="kana_name" value="<%= user[0].kana_name %>"><br>
+        gender <input type="text" name="gender" value="<%= user[0].gender %>"><br>
         email <input type="text" name="email" value="<%= user[0].email %>"><br>
+        phone <input type="text" name="phone" value="<%= user[0].phone %>"><br>
+        address <input type="text" name="address" value="<%= user[0].address %>"><br>
+        workplace <input type="text" name="workplace" value="<%= user[0].workplace %>"><br>
+        household <input type="text" name="household" value="<%= user[0].household %>"><br>
         <button type="submit">更新</button>
     </form>
 </body>

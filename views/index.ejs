@@ -10,7 +10,13 @@
         <table border="1" id="myTable">
             <tr>
                 <th>name</th>
+                <th>kana_name</th>
+                <th>gender</th>
                 <th>email</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>workplace</th>
+                <th>household</th>                
                 <th>更新・削除</th>
             </tr>
             <% users.forEach(function (element) { %>
@@ -19,7 +25,25 @@
                         <%= element.name %>
                     </td>
                     <td>
+                        <%= element.kana_name %>
+                    </td>
+                    <td>
+                        <%= element.gender %>
+                    </td>
+                    <td>
                         <%= element.email %>
+                    </td>
+                    <td>
+                        <%= element.phone %>
+                    </td>
+                    <td>
+                        <%= element.address %>
+                    </td>
+                    <td>
+                        <%= element.workplace %>
+                    </td>
+                    <td>
+                        <%= element.household %>
                     </td>
                     <td>
                         <!-- // 更新ボタン -->
