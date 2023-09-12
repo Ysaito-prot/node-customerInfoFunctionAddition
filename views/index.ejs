@@ -3,15 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>User list</title>
-        <style>
-            #id_display2 {
-                display: none;
-            }
-        </style>
     </head>
     <body>
         <label>検索：<input type="text" id="searchInput" placeholder="nameで検索"></label>
         <input type="button" value="実行" id="searchButton">
+        <div>統計調査<input type="button" value="実行" id="tokeiButton"></div>
+        <div>▼gender</div>
+        <span id="genderResult"></span>
+        <div>▼workplace</div>
+        <span id="workplaceResult"></span>
+        <div>▼household</div>
+        <span id="householdResult"></span>
         <table border="1" id="myTable">
             <tr>
                 <th>name</th>
@@ -139,6 +141,107 @@
                     });
                 });
             }
+            // 各項目の内容を統計する機能
+            let tokeiButton = document.querySelector('#tokeiButton');
+            let genderResult = document.querySelector('#genderResult');
+            let workplaceResult = document.querySelector('#workplaceResult');
+            let householdResult = document.querySelector('#householdResult');
+            tokeiButton.addEventListener('click', function () {
+                // 連続でボタンが押されても正常に更新されるように
+                genderResult.innerText = "";
+                workplaceResult.innerText = "";
+                householdResult.innerText = "";
+                let workplaceTokei = [
+                    { place: "北海道", count: 0 },
+                    { place: "青森", count: 0 },
+                    { place: "岩手", count: 0 },
+                    { place: "宮城", count: 0 },
+                    { place: "秋田", count: 0 },
+                    { place: "山形", count: 0 },
+                    { place: "福島", count: 0 },
+                    { place: "茨城", count: 0 },
+                    { place: "栃木", count: 0 },
+                    { place: "群馬", count: 0 },
+                    { place: "埼玉", count: 0 },
+                    { place: "千葉", count: 0 },
+                    { place: "東京", count: 0 },
+                    { place: "神奈川", count: 0 },
+                    { place: "新潟", count: 0 },
+                    { place: "富山", count: 0 },
+                    { place: "石川", count: 0 },
+                    { place: "福井", count: 0 },
+                    { place: "山梨", count: 0 },
+                    { place: "長野", count: 0 },
+                    { place: "岐阜", count: 0 },
+                    { place: "静岡", count: 0 },
+                    { place: "愛知", count: 0 },
+                    { place: "三重", count: 0 },
+                    { place: "滋賀", count: 0 },
+                    { place: "京都", count: 0 },
+                    { place: "大阪", count: 0 },
+                    { place: "兵庫", count: 0 },
+                    { place: "奈良", count: 0 },
+                    { place: "和歌山", count: 0 },
+                    { place: "鳥取", count: 0 },
+                    { place: "島根", count: 0 },
+                    { place: "岡山", count: 0 },
+                    { place: "広島", count: 0 },
+                    { place: "山口", count: 0 },
+                    { place: "徳島", count: 0 },
+                    { place: "香川", count: 0 },
+                    { place: "愛媛", count: 0 },
+                    { place: "高知", count: 0 },
+                    { place: "福岡", count: 0 },
+                    { place: "佐賀", count: 0 },
+                    { place: "長崎", count: 0 },
+                    { place: "熊本", count: 0 },
+                    { place: "大分", count: 0 },
+                    { place: "宮崎", count: 0 },
+                    { place: "鹿児島", count: 0 },
+                    { place: "沖縄", count: 0 }
+                ];
+                let genderTokei = [
+                    { gender: "男性", count: 0 },
+                    { gender: "女性", count: 0 }
+                ];
+                let setaiTokei = [
+                    { household: 1, count: 0 },
+                    { household: 2, count: 0 },
+                    { household: 3, count: 0 },
+                    { household: 4, count: 0 },
+                    { household: 5, count: 0 }
+                ];
+                for (let i = 0; i < workplaceTokei.length; i++) {
+                    for (let j = 0; j < users.length; j++) {
+                        if (users[j].workplace === workplaceTokei[i].place) {
+                            workplaceTokei[i].count++;
+                        }
+                    }
+                    if (workplaceTokei[i].count !== 0) {
+                        workplaceResult.insertAdjacentHTML('beforeend', `${workplaceTokei[i].place}：${workplaceTokei[i].count}人<br>`);
+                    }
+                }
+                for (let i = 0; i < genderTokei.length; i++) {
+                    for (let j = 0; j < users.length; j++) {
+                        if (users[j].gender === genderTokei[i].gender) {
+                            genderTokei[i].count++;
+                        }
+                    }
+                    if (genderTokei[i].count !== 0) {
+                        genderResult.insertAdjacentHTML('beforeend', `${genderTokei[i].gender}：${genderTokei[i].count}人<br>`);
+                    }
+                }
+                for (let i = 0; i < setaiTokei.length; i++) {
+                    for (let j = 0; j < users.length; j++) {
+                        if (users[j].household === setaiTokei[i].household) {
+                            setaiTokei[i].count++;
+                        }
+                    }
+                    if (setaiTokei[i].count !== 0) {
+                        householdResult.insertAdjacentHTML('beforeend', `世帯数${setaiTokei[i].household}：${setaiTokei[i].count}人<br>`);
+                    }
+                }
+            });
         </script>
     </body>
 </html>
