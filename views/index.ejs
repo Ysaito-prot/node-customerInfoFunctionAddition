@@ -3,6 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>User list</title>
+        <style>
+            #id_display2 {
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <label>検索：<input type="text" id="searchInput" placeholder="nameで検索"></label>
@@ -16,7 +21,7 @@
                 <th>phone</th>
                 <th>address</th>
                 <th>workplace</th>
-                <th>household</th>                
+                <th>household</th>
                 <th>更新・削除</th>
             </tr>
             <% users.forEach(function (element) { %>
@@ -55,6 +60,8 @@
                         <button type="button">
                             <a href="/delete/<%= element.id %>">削除</a>
                         </button>
+                        <!-- 追加ボタン（情報格納） -->
+                        <button class="addButton" type="button">選択</button>
                     </td>
                 </tr>
                 <% }); %>
@@ -63,6 +70,22 @@
         <label>ID：<input type="text" id="nameText"></label>
         <input type="button" value="Check" id="checkButton">
         <p id="msg"></p>
+        <div>選択した情報一覧</div>
+        <table border="1" id="myTable2">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>kana_name</th>
+                    <th>gender</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>address</th>
+                    <th>workplace</th>
+                    <th>household</th>
+                </tr>
+            </thead>
+            <tbody id="addList"></tbody>
+        </table>
         <script type="text/javascript">
             let users = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
             console.log(users);
@@ -95,8 +118,27 @@
                         tableRows[i].style.display = 'none';
                     }
                 }
-                console.log(tableRows);
             });
+            // 情報を格納する機能
+            let addButton = document.querySelectorAll('.addButton');
+            let tableRows = document.getElementById('myTable').getElementsByTagName('tr');
+            let newList = [];
+            for (let j = 0; j < addButton.length; j++) {
+                addButton[j].addEventListener('click', () => {
+                    delete users[j].id;
+                    tableRows[j + 1].style.display = 'none';
+                    const tr = document.createElement("tr");
+                    const addList = document.getElementById("addList");
+                    addList.appendChild(tr); // 表の中に「tr」（行）ができる
+                    // 1行の中を生成
+                    const objArray = Object.entries(users[j]);  // オブジェクトを配列に
+                    objArray.forEach((arr) => { // name, kana_name等の項目の数分繰り返す
+                        const td = document.createElement("td");
+                        td.textContent = arr[1];  // arr[1]はvalueの部分
+                        tr.appendChild(td);
+                    });
+                });
+            }
         </script>
     </body>
 </html>
