@@ -12,6 +12,64 @@
     <body>
         <label>検索：<input type="text" id="searchInput" placeholder="nameで検索"></label>
         <input type="button" value="実行" id="searchButton">
+        <div>統計調査<input type="button" value="実行" id="tokeiButton"></div>
+        <div>▼gender</div>
+        <span>男性：<span id="male"></span>人,</span>
+        <span>女性：<span id="female"></span>人</span>
+        <div>▼workplace</div>
+        <span>北海道：<span id="hokkaido"></span>人,</span>
+        <span>青森：<span id="aomori"></span>人,</span>
+        <span>岩手：<span id="iwate"></span>人,</span>
+        <span>宮城：<span id="miyagi"></span>人,</span>
+        <span>秋田：<span id="akita"></span>人,</span>
+        <span>山形：<span id="yamagata"></span>人,</span>
+        <span>福島：<span id="fukushima"></span>人,</span><br>
+        <span>茨城：<span id="ibaraki"></span>人,</span>
+        <span>栃木：<span id="tochigi"></span>人,</span>
+        <span>群馬：<span id="gunma"></span>人,</span>
+        <span>埼玉：<span id="saitama"></span>人,</span>
+        <span>千葉：<span id="chiba"></span>人,</span>
+        <span>東京：<span id="tokyo"></span>人,</span>
+        <span>神奈川：<span id="kanagawa"></span>人,</span><br>
+        <span>新潟：<span id="niigata"></span>人,</span>
+        <span>富山：<span id="toyama"></span>人,</span>
+        <span>石川：<span id="ishikawa"></span>人,</span>
+        <span>福井：<span id="fukui"></span>人,</span>
+        <span>山梨：<span id="yamanashi"></span>人,</span>
+        <span>長野：<span id="nagano"></span>人,</span>
+        <span>岐阜：<span id="gifu"></span>人,</span>
+        <span>静岡：<span id="shizuoka"></span>人,</span>
+        <span>愛知：<span id="aichi"></span>人,</span>
+        <span>三重：<span id="mie"></span>人,</span><br>
+        <span>滋賀：<span id="shiga"></span>人,</span>
+        <span>京都：<span id="kyoto"></span>人,</span>
+        <span>大阪：<span id="osaka"></span>人,</span>
+        <span>兵庫：<span id="hyogo"></span>人,</span>
+        <span>奈良：<span id="nara"></span>人,</span>
+        <span>和歌山：<span id="wakayama"></span>人,</span><br>
+        <span>鳥取：<span id="tottori"></span>人,</span>
+        <span>島根：<span id="shimane"></span>人,</span>
+        <span>岡山：<span id="okayama"></span>人,</span>
+        <span>広島：<span id="hiroshima"></span>人,</span>
+        <span>山口：<span id="yamaguchi"></span>人,</span><br>
+        <span>徳島：<span id="tokushima"></span>人,</span>
+        <span>香川：<span id="kagawa"></span>人,</span>
+        <span>愛媛：<span id="ehime"></span>人,</span>
+        <span>高知：<span id="kochi"></span>人,</span><br>
+        <span>福岡：<span id="fukuoka"></span>人,</span>
+        <span>佐賀：<span id="saga"></span>人,</span>
+        <span>長崎：<span id="nagasaki"></span>人,</span>
+        <span>熊本：<span id="kumamoto"></span>人,</span>
+        <span>大分：<span id="oita"></span>人,</span>
+        <span>宮崎：<span id="miyazaki"></span>人,</span>
+        <span>鹿児島：<span id="kagoshima"></span>人,</span>
+        <span>沖縄：<span id="okinawa"></span>人</span>
+        <div>▼household</div>
+        <span>世帯数1：<span id="setai1"></span>人,</span>
+        <span>世帯数2：<span id="setai2"></span>人,</span>
+        <span>世帯数3：<span id="setai3"></span>人,</span>
+        <span>世帯数4：<span id="setai4"></span>人,</span>
+        <span>世帯数5：<span id="setai5"></span>人</span>
         <table border="1" id="myTable">
             <tr>
                 <th>name</th>
@@ -139,6 +197,282 @@
                     });
                 });
             }
+            // 各項目の内容を統計する機能
+            let maleCount = 0;
+            let femaleCount = 0;
+            let hokkaidoCount = 0;
+            let aomoriCount = 0;
+            let iwateCount = 0;
+            let miyagiCount = 0;
+            let akitaCount = 0;
+            let yamagataCount = 0;
+            let fukushimaCount = 0;
+            let ibarakiCount = 0;
+            let tochigiCount = 0;
+            let gunmaCount = 0;
+            let saitamaCount = 0;
+            let chibaCount = 0;
+            let tokyoCount = 0;
+            let kanagawaCount = 0;
+            let niigataCount = 0;
+            let toyamaCount = 0;
+            let ishikawaCount = 0;
+            let fukuiCount = 0;
+            let yamanashiCount = 0;
+            let naganoCount = 0;
+            let gifuCount = 0;
+            let shizuokaCount = 0;
+            let aichiCount = 0;
+            let mieCount = 0;
+            let shigaCount = 0;
+            let kyotoCount = 0;
+            let osakaCount = 0;
+            let hyogoCount = 0;
+            let naraCount = 0;
+            let wakayamaCount = 0;
+            let tottoriCount = 0;
+            let shimaneCount = 0;
+            let okayamaCount = 0;
+            let hiroshimaCount = 0;
+            let yamaguchiCount = 0;
+            let tokushimaCount = 0;
+            let kagawaCount = 0;
+            let ehimeCount = 0;
+            let kochiCount = 0;
+            let fukuokaCount = 0;
+            let sagaCount = 0;
+            let nagasakiCount = 0;
+            let kumamotoCount = 0;
+            let oitaCount = 0;
+            let miyazakiCount = 0;
+            let kagoshimaCount = 0;
+            let okinawaCount = 0;
+            let setai1Count = 0;
+            let setai2Count = 0;
+            let setai3Count = 0;
+            let setai4Count = 0;
+            let setai5Count = 0;
+            let tokeiButton = document.querySelector('#tokeiButton');
+            tokeiButton.addEventListener('click', function () {
+                users.forEach(o => {
+                    if (o.gender === '男性') {
+                        maleCount++;
+                    }
+                    if (o.gender === '女性') {
+                        femaleCount++;
+                    }
+                    if (o.workplace === '北海道') {
+                        hokkaidoCount++;
+                    }
+                    if (o.workplace === '青森') {
+                        aomoriCount++;
+                    }
+                    if (o.workplace === '岩手') {
+                        iwateCount++;
+                    }
+                    if (o.workplace === '宮城') {
+                        miyagiCount++;
+                    }
+                    if (o.workplace === '秋田') {
+                        akitaCount++;
+                    }
+                    if (o.workplace === '山形') {
+                        yamagataCount++;
+                    }
+                    if (o.workplace === '福島') {
+                        fukushimaCount++;
+                    }
+                    if (o.workplace === '茨城') {
+                        ibarakiCount++;
+                    }
+                    if (o.workplace === '栃木') {
+                        tochigiCount++;
+                    }
+                    if (o.workplace === '群馬') {
+                        gunmaCount++;
+                    }
+                    if (o.workplace === '埼玉') {
+                        saitamaCount++;
+                    }
+                    if (o.workplace === '千葉') {
+                        chibaCount++;
+                    }
+                    if (o.workplace === '東京') {
+                        tokyoCount++;
+                    }
+                    if (o.workplace === '神奈川') {
+                        kanagawaCount++;
+                    }
+                    if (o.workplace === '新潟') {
+                        niigataCount++;
+                    }
+                    if (o.workplace === '富山') {
+                        toyamaCount++;
+                    }
+                    if (o.workplace === '石川') {
+                        ishikawaCount++;
+                    }
+                    if (o.workplace === '福井') {
+                        fukuiCount++;
+                    }
+                    if (o.workplace === '山梨') {
+                        yamanashiCount++;
+                    }
+                    if (o.workplace === '長野') {
+                        naganoCount++;
+                    }
+                    if (o.workplace === '岐阜') {
+                        gifuCount++;
+                    }
+                    if (o.workplace === '静岡') {
+                        shizuokaCount++;
+                    }
+                    if (o.workplace === '愛知') {
+                        aichiCount++;
+                    }
+                    if (o.workplace === '三重') {
+                        mieCount++;
+                    }
+                    if (o.workplace === '滋賀') {
+                        shigaCount++;
+                    }
+                    if (o.workplace === '京都') {
+                        kyotoCount++;
+                    }
+                    if (o.workplace === '大阪') {
+                        osakaCount++;
+                    }
+                    if (o.workplace === '兵庫') {
+                        hyogoCount++;
+                    }
+                    if (o.workplace === '奈良') {
+                        naraCount++;
+                    }
+                    if (o.workplace === '和歌山') {
+                        wakayamaCount++;
+                    }
+                    if (o.workplace === '鳥取') {
+                        tottoriCount++;
+                    }
+                    if (o.workplace === '島根') {
+                        shimaneCount++;
+                    }
+                    if (o.workplace === '岡山') {
+                        okayamaCount++;
+                    }
+                    if (o.workplace === '広島') {
+                        hiroshimaCount++;
+                    }
+                    if (o.workplace === '山口') {
+                        yamaguchiCount++;
+                    }
+                    if (o.workplace === '徳島') {
+                        tokushimaCount++;
+                    }
+                    if (o.workplace === '香川') {
+                        kagawaCount++;
+                    }
+                    if (o.workplace === '愛媛') {
+                        ehimeCount++;
+                    }
+                    if (o.workplace === '高知') {
+                        kochiCount++;
+                    }
+                    if (o.workplace === '福岡') {
+                        fukuokaCount++;
+                    }
+                    if (o.workplace === '佐賀') {
+                        sagaCount++;
+                    }
+                    if (o.workplace === '長崎') {
+                        nagasakiCount++;
+                    }
+                    if (o.workplace === '熊本') {
+                        kumamotoCount++;
+                    }
+                    if (o.workplace === '大分') {
+                        oitaCount++;
+                    }
+                    if (o.workplace === '宮崎') {
+                        miyazakiCount++;
+                    }
+                    if (o.workplace === '鹿児島') {
+                        kagoshimaCount++;
+                    }
+                    if (o.workplace === '沖縄') {
+                        okinawaCount++;
+                    }
+                    if (o.household === 1) {
+                        setai1Count++;
+                    }
+                    if (o.household === 2) {
+                        setai2Count++;
+                    }
+                    if (o.household === 3) {
+                        setai3Count++;
+                    }
+                    if (o.household === 4) {
+                        setai4Count++;
+                    }
+                    if (o.household === 5) {
+                        setai5Count++;
+                    }
+                });
+                document.querySelector('#male').innerText = maleCount;
+                document.querySelector('#female').innerText = femaleCount;
+                document.querySelector('#hokkaido').innerText = hokkaidoCount;
+                document.querySelector('#aomori').innerText = aomoriCount;
+                document.querySelector('#iwate').innerText = iwateCount;
+                document.querySelector('#miyagi').innerText = miyagiCount;
+                document.querySelector('#akita').innerText = akitaCount;
+                document.querySelector('#yamagata').innerText = yamagataCount;
+                document.querySelector('#fukushima').innerText = fukushimaCount;
+                document.querySelector('#ibaraki').innerText = ibarakiCount;
+                document.querySelector('#tochigi').innerText = tochigiCount;
+                document.querySelector('#gunma').innerText = gunmaCount;
+                document.querySelector('#saitama').innerText = saitamaCount;
+                document.querySelector('#chiba').innerText = chibaCount;
+                document.querySelector('#tokyo').innerText = tokyoCount;
+                document.querySelector('#kanagawa').innerText = kanagawaCount;
+                document.querySelector('#niigata').innerText = niigataCount;
+                document.querySelector('#toyama').innerText = toyamaCount;
+                document.querySelector('#ishikawa').innerText = ishikawaCount;
+                document.querySelector('#fukui').innerText = fukuiCount;
+                document.querySelector('#yamanashi').innerText = yamanashiCount;
+                document.querySelector('#nagano').innerText = naganoCount;
+                document.querySelector('#gifu').innerText = gifuCount;
+                document.querySelector('#shizuoka').innerText = shizuokaCount;
+                document.querySelector('#aichi').innerText = aichiCount;
+                document.querySelector('#mie').innerText = mieCount;
+                document.querySelector('#shiga').innerText = shigaCount;
+                document.querySelector('#kyoto').innerText = kyotoCount;
+                document.querySelector('#osaka').innerText = osakaCount;
+                document.querySelector('#hyogo').innerText = hyogoCount;
+                document.querySelector('#nara').innerText = naraCount;
+                document.querySelector('#wakayama').innerText = wakayamaCount;
+                document.querySelector('#tottori').innerText = tottoriCount;
+                document.querySelector('#shimane').innerText = shimaneCount;
+                document.querySelector('#okayama').innerText = okayamaCount;
+                document.querySelector('#hiroshima').innerText = hiroshimaCount;
+                document.querySelector('#yamaguchi').innerText = yamaguchiCount;
+                document.querySelector('#tokushima').innerText = tokushimaCount;
+                document.querySelector('#kagawa').innerText = kagawaCount;
+                document.querySelector('#ehime').innerText = ehimeCount;
+                document.querySelector('#kochi').innerText = kochiCount;
+                document.querySelector('#fukuoka').innerText = fukuokaCount;
+                document.querySelector('#saga').innerText = sagaCount;
+                document.querySelector('#nagasaki').innerText = nagasakiCount;
+                document.querySelector('#kumamoto').innerText = kumamotoCount;
+                document.querySelector('#oita').innerText = oitaCount;
+                document.querySelector('#miyazaki').innerText = miyazakiCount;
+                document.querySelector('#kagoshima').innerText = kagoshimaCount;
+                document.querySelector('#okinawa').innerText = okinawaCount;
+                document.querySelector('#setai1').innerText = setai1Count;
+                document.querySelector('#setai2').innerText = setai2Count;
+                document.querySelector('#setai3').innerText = setai3Count;
+                document.querySelector('#setai4').innerText = setai4Count;
+                document.querySelector('#setai5').innerText = setai5Count;
+            });
         </script>
     </body>
 </html>
